@@ -27,7 +27,6 @@ public class PanelPrincipal extends JFrame {
         this.setSize(1280,720);
         this.setVisible(true);
         this.add(panelcomprador);
-        this.add(panelexpendedor);
         this.add(panelprincipal);
 
 
