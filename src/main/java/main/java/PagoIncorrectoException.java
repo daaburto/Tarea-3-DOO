@@ -1,3 +1,5 @@
+package main.java;
+
 /**
  * Excepción para cuando no se está entregando ninguna moneda.
  * @author Daniel Aburto

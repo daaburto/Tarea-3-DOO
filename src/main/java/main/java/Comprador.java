@@ -1,3 +1,4 @@
+package main.java;
 /**
  * La clase Comprador representa a alguien que realiza una compra utilizando un expendedor.
  * Esta clase maneja la compra de un producto, la obtención del vuelto y da información sobre el producto consumido.

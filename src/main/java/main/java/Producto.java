@@ -1,3 +1,5 @@
+package main.java;
+
 /**
  * La clase abstracta Producto representa un tipo genérico de algo que puede ser consumido.
  * Las clases concretas que extienden Producto deben proporcionar una implementación del método consumir().

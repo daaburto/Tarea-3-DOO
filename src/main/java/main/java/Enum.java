@@ -1,3 +1,5 @@
+package main.java;
+
 /**
  * Enum representa una lista de productos disponibles con sus respectivos identificadores y valores.
  * @author Daniel Aburto

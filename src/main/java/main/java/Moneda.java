@@ -1,3 +1,5 @@
+package main.java;
+
 /**
  * Clase abstracta que implementa la interfaz comparable, para así comparar sus valores en expendedor
  * @see Expendedor

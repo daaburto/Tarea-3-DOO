@@ -1,3 +1,4 @@
+package main.java;
 /**
  * La clase abstracta Bebida representa un tipo genérico de bebida que puede ser consumida.
  * @see Producto

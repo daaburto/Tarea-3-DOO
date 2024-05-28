@@ -1,3 +1,5 @@
+package main.java;
+
 /**
  * La clase expendedor representa el objeto que nos entregará los productos y el vuelto
  * @author Joaquin Sandoval

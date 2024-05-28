@@ -1,3 +1,5 @@
+package main.java;
+
 /**
  * Clase moneda que representa una moneda de 100 pesos, subclase de Moneda
  */

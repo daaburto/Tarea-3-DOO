@@ -1,3 +1,5 @@
+package main.java;
+
 /**
  * La clase abstracta Dulce representa un tipo genérico de dulce que puede ser consumida.
  * @author Joaquín Sandoval

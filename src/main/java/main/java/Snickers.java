@@ -1,3 +1,5 @@
+package main.java;
+
 /**
  * Snickers es una subclase de Dulce que representa un Dulce específico.
  * @author Joaquín Sandoval

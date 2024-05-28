@@ -1,3 +1,5 @@
+package main.java;
+
 /**
  * Excepción para cuando el depósito no tiene el producto deseado.
  * @author Daniel Aburto

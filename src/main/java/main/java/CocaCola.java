@@ -1,3 +1,4 @@
+package main.java;
 /**
  * CocaCola es una subclase de Bebida que representa una bebida específica.
  * @see Bebida

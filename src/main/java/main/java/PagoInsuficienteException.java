@@ -1,3 +1,5 @@
+package main.java;
+
 /**
  * Excepción para cuando el valor de la moneda no es suficiente.
  * @author Daniel Aburto

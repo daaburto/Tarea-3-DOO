@@ -1,9 +1,11 @@
+package main.java;
+
 /**
  * Super8 es una subclase de Dulce que representa un Dulce específico.
  * @author Joaquín Sandoval
  * @see Dulce
  */
-public class Super8 extends Dulce{
+public class Super8 extends main.java.Dulce {
     /**
      * Constructor que llama al constructor de la superclase Dulce
      * @param s número de serie del Super8
