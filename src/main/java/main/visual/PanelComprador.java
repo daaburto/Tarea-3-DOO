@@ -10,20 +10,28 @@ import java.awt.event.ActionListener;
 
 public class PanelComprador extends JPanel implements ActionListener{
 
-    JButton pushbutton;
-    JButton paybutton;
-    JButton resetbutton;
-    JButton moneda100;
-    JButton moneda500;
-    JButton moneda1000;
-    JButton moneda1500;
-    JLabel labelprecio;
-    int precio;
+    private JButton pushbutton;
+    private JButton paybutton;
+    //JButton resetbutton;
+    private JButton moneda100;
+    private JButton moneda500;
+    private JButton moneda1000;
+    private JButton moneda1500;
+    private JLabel labelprecio;
+    private int precio;
+    private int cualproducto;
+    private Comprador comprador;
+    private Moneda monedacomprador;
     PanelComprador(){
         super();
         precio = 0;
+        cualproducto = 2;
+        monedacomprador = null;
         // Imagenes
-        ImageIcon img_moneda = new ImageIcon("src/main/resources/moneda.jpg");
+        ImageIcon img_moneda100 = new ImageIcon("src/main/resources/moneda100.png");
+        ImageIcon img_moneda500 = new ImageIcon("src/main/resources/moneda500.png");
+        ImageIcon img_moneda1000 = new ImageIcon("src/main/resources/moneda1000.png");
+        ImageIcon img_moneda1500 = new ImageIcon("src/main/resources/moneda1500.png");
 
 
         // Panel
@@ -67,24 +75,36 @@ public class PanelComprador extends JPanel implements ActionListener{
         // Boton Push
         pushbutton = new JButton("PUSH");
         pushbutton.setBounds(20,550,300,100);
+        pushbutton.addActionListener(this);
 
         // Boton Pay
         paybutton = new JButton("PAY");
-        paybutton.setBounds(0,120,150,80);
+        paybutton.setBounds(0,120,300,80);
+        paybutton.addActionListener(this);
 
         // Boton Reset
+        /*
         resetbutton = new JButton("RESET");
         resetbutton.setBounds(150,120,150,80);
         resetbutton.addActionListener(this);
 
+         */
+
         // Boton Monedas
-        moneda100 = new JButton(img_moneda);
+        moneda100 = new JButton(img_moneda100);
+        moneda100.setBackground(Color.PINK);
         moneda100.addActionListener(this);
-        moneda500 = new JButton(img_moneda);
+
+        moneda500 = new JButton(img_moneda500);
+        moneda500.setBackground(Color.GREEN);
         moneda500.addActionListener(this);
-        moneda1000 = new JButton(img_moneda);
+
+        moneda1000 = new JButton(img_moneda1000);
+        moneda1000.setBackground(Color.CYAN);
         moneda1000.addActionListener(this);
-        moneda1500 = new JButton(img_moneda);
+
+        moneda1500 = new JButton(img_moneda1500);
+        moneda1500.setBackground(Color.YELLOW);
         moneda1500.addActionListener(this);
 
 
@@ -97,7 +117,7 @@ public class PanelComprador extends JPanel implements ActionListener{
         this.add(panelmonedas);
 
         panelpago.add(paybutton);
-        panelpago.add(resetbutton);
+        //panelpago.add(resetbutton);
         panelpago.add(labelprecio);
 
         panelmonedas.add(moneda100);
@@ -111,23 +131,67 @@ public class PanelComprador extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent button_down){
         if(button_down.getSource() == moneda100)
         {
-            precio += 100;
+            precio = 100;
+            moneda100.setBorder(BorderFactory.createLineBorder(Color.RED, 5));
+            moneda500.setBorder(null);
+            moneda1000.setBorder(null);
+            moneda1500.setBorder(null);
         }
         else if(button_down.getSource() == moneda500)
         {
-            precio += 500;
+            precio = 500;
+            moneda500.setBorder(BorderFactory.createLineBorder(Color.RED, 5));
+            moneda100.setBorder(null);
+            moneda1000.setBorder(null);
+            moneda1500.setBorder(null);
         }
         else if(button_down.getSource() == moneda1000)
         {
-            precio += 1000;
+            precio = 1000;
+            moneda1000.setBorder(BorderFactory.createLineBorder(Color.RED, 5));
+            moneda100.setBorder(null);
+            moneda500.setBorder(null);
+            moneda1500.setBorder(null);
         }
         else if(button_down.getSource() == moneda1500)
         {
-            precio += 1500;
+            precio = 1500;
+            moneda1500.setBorder(BorderFactory.createLineBorder(Color.RED, 5));
+            moneda100.setBorder(null);
+            moneda500.setBorder(null);
+            moneda1000.setBorder(null);
         }
-        else if (button_down.getSource() == resetbutton)
+        else if(button_down.getSource() == paybutton)
         {
-            precio = 0;
+            if (cualproducto != 0)
+            {
+                Expendedor exp = new Expendedor(5);
+
+                if (precio == 100) {
+                    monedacomprador = new Moneda100();
+                } else if (precio == 500) {
+                    monedacomprador = new Moneda500();
+                } else if (precio == 1000) {
+                    monedacomprador = new Moneda1000();
+                } else if (precio == 1500) {
+                    monedacomprador = new Moneda1500();
+                }
+
+                try {
+                    comprador = new Comprador(monedacomprador, cualproducto, exp);
+                    JOptionPane.showMessageDialog(null, "Se ha comprado el producto con exito", "Compra Exitosa!", JOptionPane.PLAIN_MESSAGE);
+                } catch (NoHayProductoException e) {
+                    JOptionPane.showMessageDialog(null, "No queda el producto que intentas comprar", "No hay producto", JOptionPane.INFORMATION_MESSAGE);
+                } catch (PagoInsuficienteException e) {
+                    JOptionPane.showMessageDialog(null, "No tienes dinero suficiente para comprar el producto", "Pago Insuficiente", JOptionPane.INFORMATION_MESSAGE);
+                } catch (PagoIncorrectoException e) {
+                    JOptionPane.showMessageDialog(null, "No has ingresado ninguna moneda", "Pago Incorrecto", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+
+        }else if (button_down.getSource() == pushbutton)
+        {
+            JOptionPane.showMessageDialog(null,"Has comprado " + comprador.queConsumiste());
         }
 
         labelprecio.setText(String.valueOf(precio) + "$");

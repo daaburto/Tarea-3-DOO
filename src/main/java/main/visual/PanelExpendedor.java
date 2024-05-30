@@ -16,6 +16,5 @@ public class PanelExpendedor extends JPanel {
 
         this.setVisible(true);
 
-
     }
 }
