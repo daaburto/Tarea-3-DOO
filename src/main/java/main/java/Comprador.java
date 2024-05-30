@@ -24,15 +24,14 @@ public class Comprador{
      */
     public Comprador(Moneda m, int cualProducto, Expendedor exp)throws NoHayProductoException,PagoIncorrectoException,PagoInsuficienteException{
         int total;
-
-        Producto ProductoComprado = exp.comprarProducto(m, cualProducto);
+        exp.comprarProducto(m,cualProducto);
+        Producto ProductoComprado = exp.getDepositoEspecial().getProducto();
         Moneda monedaVuelto;
 
         if (ProductoComprado != null) {
             sonido = ProductoComprado.consumir();
         }else {
             sonido = null;
-
         }
 
         total = 0;

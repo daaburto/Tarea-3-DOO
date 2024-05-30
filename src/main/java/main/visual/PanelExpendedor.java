@@ -1,20 +1,26 @@
 package main.visual;
 
+import main.java.*;
+import main.java.Enum;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class PanelExpendedor extends JPanel {
     private ProductoButton[] productos;
     private JButton boton;
+    private int productoSeleccionado;
     private String[] imagenes = {"src/main/resources/coca.png", "src/main/resources/sprite.png", "src/main/resources/fanta.png",
-    "src/main/resources/snickers.png", "src/main/resources/super8.png", "src/main/resources/chokita.png"};
-    private int[] cantidades = {1, 2, 0, 5, 0, 6}; // Cantidades iniciales
+            "src/main/resources/snickers.png", "src/main/resources/super8.png", "src/main/resources/chokita.png"};
+    private int[] cantidades = {1, 2, 0, 5, 0, 6};  // Cantidades iniciales de los productos
 
+    private Expendedor exp;
     public PanelExpendedor() {
         super();
         this.setBackground(Color.GRAY);
         this.setLayout(new BorderLayout());
         this.setBounds(10, 10, 900, 666);
+        Expendedor exp = new Expendedor(6);
 
         productos = new ProductoButton[6];
         JPanel productosPanel = new JPanel();
@@ -41,46 +47,56 @@ public class PanelExpendedor extends JPanel {
     }
 
     private void seleccionarProducto(int i) {
-        // borde
+        productoSeleccionado = i;
         for (ProductoButton producto : productos) {
             producto.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         }
-        // borde del producto seleccionado
         productos[i].setBorder(BorderFactory.createLineBorder(Color.RED, 5));
     }
 
+    public void reducirCantidadProductoSeleccionado() {
+        productos[productoSeleccionado].reducirCantidad();
+    //    exp.comprarProducto([Moneda],productoSeleccionado);
+    }
+
     private void rellenarProductos() {
-        for (ProductoButton producto : productos) {
+        for (int i = 0; i < productos.length; i++) {
+            ProductoButton producto = productos[i];
             if (producto.getCantidad() == 0) {
                 producto.setCantidad(6);
+                switch (i) {
+                    case 0:
+                        exp.rellenarDeposito(Enum.COCA, 6);
+                        break;
+                    case 1:
+                        exp.rellenarDeposito(Enum.SPRITE, 6);
+                        break;
+                    case 2:
+                        exp.rellenarDeposito(Enum.FANTA, 6);
+                        break;
+                    case 3:
+                        exp.rellenarDeposito(Enum.SNICKERS, 6);
+                        break;
+                    case 4:
+                        exp.rellenarDeposito(Enum.SUPER8, 6);
+                        break;
+                    case 5:
+                        exp.rellenarDeposito(Enum.CHOKITA, 6);
+                        break;
+                }
+
                 producto.repaint();
             }
         }
     }
-}
 
-class ProductoButton extends JButton {
-    private int cantidad;
-    private Image image;
-
-    public ProductoButton(Icon icon, int cantidad) {
-        this.cantidad = cantidad;
-        this.image = ((ImageIcon) icon).getImage();
+    public Expendedor getExpendedor() {
+        return exp;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        for (int i = 0; i < cantidad; i++) {
-            g.drawImage(image, 22, i * 30, this);
-        }
+    public int getProductoSeleccionado(){
+        return productoSeleccionado;
     }
 }
+
+
