@@ -6,16 +6,12 @@ package main.java;
  * @see Producto
  */
 public abstract class Dulce extends Producto{
-    /** int para almacenar el número de serie*/
-    private int serie;
-
     /**
      * Constructor de la clase Dulce que inicializa el número de serie.
-     * @param numSerie el número de serie del dulce
+     * @param s Hereda el numero de serie
      */
-    public Dulce(int numSerie){
-        super();
-        serie = numSerie;
+    public Dulce(int s){
+        super(s);
     }
 
     /**

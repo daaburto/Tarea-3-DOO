@@ -6,21 +6,21 @@ import main.java.Enum;
 import javax.swing.*;
 import java.awt.*;
 
+
+
 public class PanelExpendedor extends JPanel {
-    private ProductoButton[] productos;
+    private static ProductoButton[] productos;
     private JButton boton;
-    private int productoSeleccionado;
+    public static int productoSeleccionado = 1;
     private String[] imagenes = {"src/main/resources/coca.png", "src/main/resources/sprite.png", "src/main/resources/fanta.png",
             "src/main/resources/snickers.png", "src/main/resources/super8.png", "src/main/resources/chokita.png"};
-    private int[] cantidades = {1, 2, 0, 5, 0, 6};  // Cantidades iniciales de los productos
-
-    private Expendedor exp;
+    private int[] cantidades = {3, 3, 3, 3, 3, 3};  // Cantidades iniciales de los productos
+    public static Expendedor exp = new Expendedor(3);
     public PanelExpendedor() {
         super();
         this.setBackground(Color.GRAY);
         this.setLayout(new BorderLayout());
         this.setBounds(10, 10, 900, 666);
-        Expendedor exp = new Expendedor(6);
 
         productos = new ProductoButton[6];
         JPanel productosPanel = new JPanel();
@@ -54,9 +54,8 @@ public class PanelExpendedor extends JPanel {
         productos[i].setBorder(BorderFactory.createLineBorder(Color.RED, 5));
     }
 
-    public void reducirCantidadProductoSeleccionado() {
+    public static void reducirCantidadProductoSeleccionado() {
         productos[productoSeleccionado].reducirCantidad();
-        //    exp.comprarProducto([Moneda],productoSeleccionado);
     }
 
     private void rellenarProductos() {
@@ -88,14 +87,6 @@ public class PanelExpendedor extends JPanel {
                 producto.repaint();
             }
         }
-    }
-
-    public Expendedor getExpendedor() {
-        return exp;
-    }
-
-    public int getProductoSeleccionado(){
-        return productoSeleccionado;
     }
 }
 

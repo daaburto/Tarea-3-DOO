@@ -17,15 +17,14 @@ public class PanelComprador extends JPanel implements ActionListener{
     private JButton moneda500;
     private JButton moneda1000;
     private JButton moneda1500;
-    private JLabel labelprecio;
+    private JLabel labelpago;
     private int precio;
-    private int cualproducto;
+    private ImageIcon img_iconoproducto;
     private Comprador comprador;
     private Moneda monedacomprador;
     PanelComprador(){
         super();
         precio = 0;
-        cualproducto = 2;
         monedacomprador = null;
         // Imagenes
         ImageIcon img_moneda100 = new ImageIcon("src/main/resources/moneda100.png");
@@ -34,14 +33,16 @@ public class PanelComprador extends JPanel implements ActionListener{
         ImageIcon img_moneda1500 = new ImageIcon("src/main/resources/moneda1500.png");
 
 
-        // Panel
-        labelprecio = new JLabel();
-        labelprecio.setText(String.valueOf(precio) + "$");
-        labelprecio.setBounds(75, 30, 150, 50);
-        labelprecio.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-        labelprecio.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-        labelprecio.setVerticalAlignment(JLabel.CENTER);
-        labelprecio.setHorizontalAlignment(JLabel.CENTER);
+        // Label
+        labelpago = new JLabel();
+        labelpago.setText(String.valueOf(precio) + "$");
+        labelpago.setBounds(75, 30, 150, 50);
+        labelpago.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        labelpago.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        labelpago.setVerticalAlignment(JLabel.CENTER);
+        labelpago.setHorizontalAlignment(JLabel.CENTER);
+
+
 
 
          /////////////// PANELES ///////////////
@@ -118,7 +119,7 @@ public class PanelComprador extends JPanel implements ActionListener{
 
         panelpago.add(paybutton);
         //panelpago.add(resetbutton);
-        panelpago.add(labelprecio);
+        panelpago.add(labelpago);
 
         panelmonedas.add(moneda100);
         panelmonedas.add(moneda500);
@@ -163,9 +164,30 @@ public class PanelComprador extends JPanel implements ActionListener{
         }
         else if(button_down.getSource() == paybutton)
         {
-            if (cualproducto != 0)
+            if (PanelExpendedor.exp.getDepositoEspecial().getProducto() == null)
             {
-                Expendedor exp = new Expendedor(5);
+                switch (PanelExpendedor.productoSeleccionado + 1) {
+                    case (1):
+                        img_iconoproducto = new ImageIcon("src/main/resources/coca.png");
+                        break;
+                    case (2):
+                        img_iconoproducto = new ImageIcon("src/main/resources/sprite.png");
+                        break;
+                    case (3):
+                        img_iconoproducto = new ImageIcon("src/main/resources/fanta.png");
+                        break;
+                    case (4):
+                        img_iconoproducto = new ImageIcon("src/main/resources/snickers.png");
+                        break;
+                    case (5):
+                        img_iconoproducto = new ImageIcon("src/main/resources/super8.png");
+                        break;
+                    case (6):
+                        img_iconoproducto = new ImageIcon("src/main/resources/chokita.png");
+                        break;
+                }
+            }
+                //Expendedor exp = new Expendedor(5);
 
                 if (precio == 100) {
                     monedacomprador = new Moneda100();
@@ -177,24 +199,33 @@ public class PanelComprador extends JPanel implements ActionListener{
                     monedacomprador = new Moneda1500();
                 }
 
-                try {
-                    comprador = new Comprador(monedacomprador, cualproducto, exp);
-                    JOptionPane.showMessageDialog(null, "Se ha comprado el producto con exito", "Compra Exitosa!", JOptionPane.PLAIN_MESSAGE);
-                } catch (NoHayProductoException e) {
-                    JOptionPane.showMessageDialog(null, "No queda el producto que intentas comprar", "No hay producto", JOptionPane.INFORMATION_MESSAGE);
-                } catch (PagoInsuficienteException e) {
-                    JOptionPane.showMessageDialog(null, "No tienes dinero suficiente para comprar el producto", "Pago Insuficiente", JOptionPane.INFORMATION_MESSAGE);
-                } catch (PagoIncorrectoException e) {
-                    JOptionPane.showMessageDialog(null, "No has ingresado ninguna moneda", "Pago Incorrecto", JOptionPane.INFORMATION_MESSAGE);
+                if (PanelExpendedor.exp.getDepositoEspecial().getProducto() == null) {
+                    try {
+                        comprador = new Comprador(monedacomprador, PanelExpendedor.productoSeleccionado + 1, PanelExpendedor.exp);
+                        JOptionPane.showMessageDialog(null, "Se ha comprado el producto con exito", "Compra Exitosa!", JOptionPane.PLAIN_MESSAGE);
+                        PanelExpendedor.reducirCantidadProductoSeleccionado();
+                        pushbutton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+                    } catch (NoHayProductoException | PagoInsuficienteException | PagoIncorrectoException e) {
+                        JOptionPane.showMessageDialog(null, e.getMessage(), "Error en la compra", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "Primero debes sacar tu producto del deposito", "Deposito lleno", JOptionPane.WARNING_MESSAGE);
                 }
-            }
+
 
         }else if (button_down.getSource() == pushbutton)
         {
-            JOptionPane.showMessageDialog(null,"Has comprado " + comprador.queConsumiste());
+            if (comprador != null) {
+                JOptionPane.showMessageDialog(null, "Has comprado " + comprador.queConsumiste() + "\nNumero de serie: " + PanelExpendedor.exp.getDepositoEspecial().getProducto().getSerie(), "Compra exitosa", JOptionPane.INFORMATION_MESSAGE, img_iconoproducto);
+                PanelExpendedor.exp.getDepositoEspecial().removeProducto();
+                pushbutton.setBorder(null);
+                comprador = null;
+            }else {
+                JOptionPane.showMessageDialog(null, "El depósito está vacío", "Sin producto", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
 
-        labelprecio.setText(String.valueOf(precio) + "$");
+        labelpago.setText(String.valueOf(precio) + "$");
     }
 
 }

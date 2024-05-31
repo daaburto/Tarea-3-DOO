@@ -4,16 +4,12 @@ package main.java;
  * @see Producto
  */
 abstract public class Bebida extends Producto{
-    /** int para almacenar el número de serie*/
-    private int serie;
-
     /**
-     * Constructor de la clase Bebida que inicializa el número de serie.
-     * @param numSerie el número de serie de la bebida
+     * Constructor de Bebida
+     * @param s Hereda numero de serie
      */
-    public Bebida(int numSerie){
-        super();
-        serie = numSerie;
+    public Bebida(int s){
+        super(s);
     }
 
     /**
