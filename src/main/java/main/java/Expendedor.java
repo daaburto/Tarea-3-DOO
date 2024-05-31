@@ -68,6 +68,7 @@ public class Expendedor{
      * @see Deposito
      */
     private Deposito<Producto> depositoEspecial;
+    private int id;
 
     /**
      * Constructor que crea los depósitos para cada producto, además del depósito de monedas para el vuelto.
@@ -75,43 +76,50 @@ public class Expendedor{
      */
     public Expendedor(int numProductos){
         depositoEspecial = new Deposito<Producto>();
+        id = 1;
         monVu = new Deposito<>();
         monEx = new Deposito<>();
 
         coca = new Deposito<>();
         for (int i = 0; i < numProductos; i++){
-            Producto p = new CocaCola(100+i);
+            Producto p = new CocaCola(id);
             coca.addList(p);
+            id++;
         }
 
         sprite = new Deposito<>();
         for (int i = 0; i < numProductos; i++){
-            Producto p = new Sprite(200+i);
+            Producto p = new Sprite(id);
             sprite.addList(p);
+            id++;
         }
 
         fanta = new Deposito<>();
         for (int i = 0; i < numProductos; i++){
-            Producto p = new Fanta(300+i);
+            Producto p = new Fanta(id);
             fanta.addList(p);
+            id++;
         }
 
         snickers = new Deposito<>();
         for (int i = 0; i < numProductos; i++){
-            Producto p = new Snickers(400+i);
+            Producto p = new Snickers(id);
             snickers.addList(p);
+            id++;
         }
 
         super8 = new Deposito<>();
         for (int i = 0; i < numProductos; i++){
-            Producto p = new Super8(500+i);
+            Producto p = new Super8(id);
             super8.addList(p);
+            id++;
         }
 
         chokita = new Deposito<>();
         for (int i = 0; i < numProductos; i++){
-            Producto p = new Chokita(600+i);
+            Producto p = new Chokita(id);
             chokita.addList(p);
+            id++;
         }
     }
 
@@ -128,38 +136,44 @@ public class Expendedor{
             case COCA:
                 deposito = coca;
                 for (int i = 0; i < cantidad; i++) {
-                    p = new CocaCola(100 + i);
+                    p = new CocaCola(id);
                     deposito.addList(p);
+                    id++;
                 }
             case SPRITE:
                 deposito = sprite;
                 for (int i = 0; i < cantidad; i++) {
-                    p = new Sprite(200 + i);
+                    p = new Sprite(id);
                     deposito.addList(p);
+                    id++;
                 }
             case FANTA:
                 deposito = fanta;
                 for (int i = 0; i < cantidad; i++) {
-                    p = new Fanta(300 + i);
+                    p = new Fanta(id);
                     deposito.addList(p);
+                    id++;
                 }
             case SNICKERS:
                 deposito = snickers;
                 for (int i = 0; i < cantidad; i++) {
-                    p = new Snickers(400 + i);
+                    p = new Snickers(id);
                     deposito.addList(p);
+                    id++;
                 }
             case SUPER8:
                 deposito = super8;
                 for (int i = 0; i < cantidad; i++) {
-                    p = new Super8(500 + i);
+                    p = new Super8(id);
                     deposito.addList(p);
+                    id++;
                 }
             case CHOKITA:
                 deposito = chokita;
                 for (int i = 0; i < cantidad; i++) {
-                    p = new Chokita(600 + i);
+                    p = new Chokita(id);
                     deposito.addList(p);
+                    id++;
                 }
         }
     }
@@ -353,6 +367,7 @@ public class Expendedor{
     public Deposito<Producto> getDepositoEspecial(){
         return depositoEspecial;
     }
+
 
 
 }

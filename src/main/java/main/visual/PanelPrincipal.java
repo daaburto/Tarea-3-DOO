@@ -2,12 +2,13 @@ package main.visual;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PanelPrincipal extends JFrame {
 
     private PanelComprador com;
     private PanelExpendedor exp;
-
     public PanelPrincipal() {
         super("Expendedor de Productos");
 
@@ -35,14 +36,5 @@ public class PanelPrincipal extends JFrame {
         this.add(exp);
         this.add(panelprincipal);
     }
-
-    /*
-    public void paintComponent(Graphics g){
-        super.paintComponents(g);
-        com.paintComponents(g);
-        exp.paintComponents(g);
-    }
-     */
-
 
 }
