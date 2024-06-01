@@ -8,6 +8,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static main.visual.Musica.music;
+
 public class PanelComprador extends JPanel implements ActionListener{
 
     private JButton pushbutton;
@@ -132,6 +134,7 @@ public class PanelComprador extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent button_down){
         if(button_down.getSource() == moneda100)
         {
+            music.ButtonMoneda();
             precio = 100;
             moneda100.setBorder(BorderFactory.createLineBorder(Color.RED, 5));
             moneda500.setBorder(null);
@@ -140,6 +143,7 @@ public class PanelComprador extends JPanel implements ActionListener{
         }
         else if(button_down.getSource() == moneda500)
         {
+            music.ButtonMoneda();
             precio = 500;
             moneda500.setBorder(BorderFactory.createLineBorder(Color.RED, 5));
             moneda100.setBorder(null);
@@ -148,6 +152,7 @@ public class PanelComprador extends JPanel implements ActionListener{
         }
         else if(button_down.getSource() == moneda1000)
         {
+            music.ButtonMoneda();
             precio = 1000;
             moneda1000.setBorder(BorderFactory.createLineBorder(Color.RED, 5));
             moneda100.setBorder(null);
@@ -156,6 +161,7 @@ public class PanelComprador extends JPanel implements ActionListener{
         }
         else if(button_down.getSource() == moneda1500)
         {
+            music.ButtonMoneda();
             precio = 1500;
             moneda1500.setBorder(BorderFactory.createLineBorder(Color.RED, 5));
             moneda100.setBorder(null);
@@ -202,6 +208,7 @@ public class PanelComprador extends JPanel implements ActionListener{
                 if (PanelExpendedor.exp.getDepositoEspecial().getProducto() == null) {
                     try {
                         comprador = new Comprador(monedacomprador, PanelExpendedor.productoSeleccionado + 1, PanelExpendedor.exp);
+                        music.ButtonPay();
                         JOptionPane.showMessageDialog(null, "Se ha comprado el producto con exito", "Compra Exitosa!", JOptionPane.PLAIN_MESSAGE);
                         PanelExpendedor.reducirCantidadProductoSeleccionado();
                         pushbutton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
@@ -216,6 +223,7 @@ public class PanelComprador extends JPanel implements ActionListener{
         }else if (button_down.getSource() == pushbutton)
         {
             if (comprador != null) {
+                music.ButtonPush();
                 JOptionPane.showMessageDialog(null, "Has comprado " + comprador.queConsumiste() + "\nNumero de serie: " + PanelExpendedor.exp.getDepositoEspecial().getProducto().getSerie(), "Compra exitosa", JOptionPane.INFORMATION_MESSAGE, img_iconoproducto);
                 PanelExpendedor.exp.getDepositoEspecial().removeProducto();
                 pushbutton.setBorder(null);

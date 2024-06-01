@@ -35,6 +35,7 @@ public class PanelPrincipal extends JFrame {
         this.add(com);
         this.add(exp);
         this.add(panelprincipal);
+        Musica musica = new Musica();
+        musica.playMusic();
     }
-
 }

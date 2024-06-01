@@ -31,8 +31,9 @@ public class ProductoButton extends JButton {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        int yOffset = 150 - (cantidad - 1) * 30;
         for (int i = 0; i < cantidad; i++) {
-            g.drawImage(image, 22, i * 30, this);
+            g.drawImage(image, 22, yOffset + (i * 30), this);
         }
     }
 }
