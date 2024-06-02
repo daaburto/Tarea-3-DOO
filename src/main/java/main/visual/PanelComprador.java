@@ -10,20 +10,72 @@ import java.awt.event.ActionListener;
 
 import static main.visual.Musica.music;
 
+/**
+ * PanelComprador representa el panel de la interfaz gráfica para el comprador.
+ * Este panel permite seleccionar el tipo de moneda, pagar y retirar el producto.
+ * @see Comprador
+ * @author Joaquín Sandoval
+ */
 public class PanelComprador extends JPanel implements ActionListener{
-
+    /**
+     * Botón para retirar el producto.
+     */
     private JButton pushbutton;
+
+    /**
+     * Botón para realizar el pago.
+     */
     private JButton paybutton;
-    //JButton resetbutton;
+
+    /**
+     * Botón para seleccionar moneda de 100 pesos.
+     */
     private JButton moneda100;
+
+    /**
+     * Botón para seleccionar moneda de 500 pesos.
+     */
     private JButton moneda500;
+
+    /**
+     * Botón para seleccionar moneda de 1000 pesos.
+     */
     private JButton moneda1000;
+
+    /**
+     * Botón para seleccionar moneda de 1500 pesos.
+     */
     private JButton moneda1500;
+
+    /**
+     * Etiqueta para mostrar el monto del pago.
+     */
     private JLabel labelpago;
+
+    /**
+     * Precio del producto seleccionado.
+     */
     private int precio;
+
+    /**
+     * Icono de imagen del producto seleccionado.
+     */
     private ImageIcon img_iconoproducto;
+
+    /**
+     * Objeto Comprador que maneja la lógica de compra.
+     */
     private Comprador comprador;
+
+    /**
+     * Moneda seleccionada por el comprador.
+     */
     private Moneda monedacomprador;
+
+    /**
+     * Constructor de PanelComprador.
+     * Inicializa los componentes del panel y configura sus propiedades.
+     */
     PanelComprador(){
         super();
         precio = 0;
@@ -37,7 +89,7 @@ public class PanelComprador extends JPanel implements ActionListener{
 
         // Label
         labelpago = new JLabel();
-        labelpago.setText(String.valueOf(precio) + "$");
+        labelpago.setText("$" + precio);
         labelpago.setBounds(75, 30, 150, 50);
         labelpago.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         labelpago.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
@@ -130,6 +182,10 @@ public class PanelComprador extends JPanel implements ActionListener{
 
     }
 
+    /**
+     * Maneja los eventos de los botones.
+     * @param button_down evento que ocurre al presionar un botón
+     */
     @Override
     public void actionPerformed(ActionEvent button_down){
         if(button_down.getSource() == moneda100)
@@ -233,7 +289,6 @@ public class PanelComprador extends JPanel implements ActionListener{
             }
         }
 
-        labelpago.setText(String.valueOf(precio) + "$");
+        labelpago.setText("$" + precio);
     }
-
 }

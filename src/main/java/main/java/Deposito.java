@@ -12,6 +12,8 @@ import java.util.ArrayList;
 public class Deposito<T>{
     /**ArrayList genérica usada para guardar los productos o las monedas*/
     private ArrayList<T> lista;
+
+    /**Depósito especial de un elemento que guarda el producto comprado*/
     private T productoespecial;
 
     /**
@@ -43,7 +45,6 @@ public class Deposito<T>{
      * Permite retirar un producto de la ArrayList de productos
      * @return Devuelve el primer producto del depósito de productos
      */
-
     public T getProducto(){
         if (!lista.isEmpty()){
             return lista.removeFirst();
@@ -52,10 +53,17 @@ public class Deposito<T>{
         }
     }
 
+    /**
+     * Retira el producto comprado del depósito especial
+     */
     public void removeProducto(){
         productoespecial = null;
     }
 
+    /**
+     * Añade el producto comprado al depósito especial
+     * @param p
+     */
     public void setProducto(T p){
         productoespecial = p;
     }

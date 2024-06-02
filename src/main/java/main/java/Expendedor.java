@@ -68,6 +68,10 @@ public class Expendedor{
      * @see Deposito
      */
     private Deposito<Producto> depositoEspecial;
+
+    /**
+     * Número de serie del producto
+     */
     private int id;
 
     /**
@@ -367,7 +371,4 @@ public class Expendedor{
     public Deposito<Producto> getDepositoEspecial(){
         return depositoEspecial;
     }
-
-
-
 }

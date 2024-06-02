@@ -13,7 +13,7 @@ public class Chokita extends Dulce{
     }
 
     /**
-     * Devuelve un String que representa el consumo de una CocaCola.
+     * Devuelve un String que representa el consumo de una Chokita.
      * @return "chokita" como String
      */
     public String consumir(){
