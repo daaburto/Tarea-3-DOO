@@ -67,6 +67,14 @@ public class Expendedor{
      * Deposito que almacenará el producto que se compra.
      * @see Deposito
      */
+
+
+
+
+
+
+
+
     private Deposito<Producto> depositoEspecial;
     private int id;
 
@@ -366,6 +374,10 @@ public class Expendedor{
      */
     public Deposito<Producto> getDepositoEspecial(){
         return depositoEspecial;
+    }
+
+    public Deposito<Moneda> getDepositoExpendedor(){
+        return monEx;
     }
 
 

@@ -24,10 +24,14 @@ public class PanelComprador extends JPanel implements ActionListener{
     private ImageIcon img_iconoproducto;
     private Comprador comprador;
     private Moneda monedacomprador;
+
+
     PanelComprador(){
         super();
         precio = 0;
         monedacomprador = null;
+
+
         // Imagenes
         ImageIcon img_moneda100 = new ImageIcon("src/main/resources/moneda100.png");
         ImageIcon img_moneda500 = new ImageIcon("src/main/resources/moneda500.png");
@@ -85,14 +89,6 @@ public class PanelComprador extends JPanel implements ActionListener{
         paybutton.setBounds(0,120,300,80);
         paybutton.addActionListener(this);
 
-        // Boton Reset
-        /*
-        resetbutton = new JButton("RESET");
-        resetbutton.setBounds(150,120,150,80);
-        resetbutton.addActionListener(this);
-
-         */
-
         // Boton Monedas
         moneda100 = new JButton(img_moneda100);
         moneda100.setBackground(Color.PINK);
@@ -127,6 +123,8 @@ public class PanelComprador extends JPanel implements ActionListener{
         panelmonedas.add(moneda500);
         panelmonedas.add(moneda1000);
         panelmonedas.add(moneda1500);
+
+
 
     }
 
@@ -193,7 +191,6 @@ public class PanelComprador extends JPanel implements ActionListener{
                         break;
                 }
             }
-                //Expendedor exp = new Expendedor(5);
 
                 if (precio == 100) {
                     monedacomprador = new Moneda100();
@@ -211,6 +208,7 @@ public class PanelComprador extends JPanel implements ActionListener{
                         music.ButtonPay();
                         JOptionPane.showMessageDialog(null, "Se ha comprado el producto con exito", "Compra Exitosa!", JOptionPane.PLAIN_MESSAGE);
                         PanelExpendedor.reducirCantidadProductoSeleccionado();
+                        PanelDepositoMonedas.AumentarCantidad(precio);
                         pushbutton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
                     } catch (NoHayProductoException | PagoInsuficienteException | PagoIncorrectoException e) {
                         JOptionPane.showMessageDialog(null, e.getMessage(), "Error en la compra", JOptionPane.INFORMATION_MESSAGE);

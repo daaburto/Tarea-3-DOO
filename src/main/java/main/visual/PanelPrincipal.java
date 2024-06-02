@@ -9,6 +9,7 @@ public class PanelPrincipal extends JFrame {
 
     private PanelComprador com;
     private PanelExpendedor exp;
+    private PanelDepositoMonedas dep;
     public PanelPrincipal() {
         super("Expendedor de Productos");
 
@@ -17,6 +18,9 @@ public class PanelPrincipal extends JFrame {
 
         // Panel Comprador
         com = new PanelComprador();
+
+        // JDialog Monedero
+        dep = new PanelDepositoMonedas(this);
 
         ImageIcon icono = new ImageIcon("src/main/resources/cocacola.png");
 
@@ -35,7 +39,9 @@ public class PanelPrincipal extends JFrame {
         this.add(com);
         this.add(exp);
         this.add(panelprincipal);
+        dep.setLocation(this.getX() + this.getWidth()-200,this.getY());
         Musica musica = new Musica();
         musica.playMusic();
+        //this.add(dep);
     }
 }
