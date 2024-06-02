@@ -5,22 +5,26 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PanelPrincipal extends JFrame {
+public class PanelPrincipal extends JFrame{
 
     private PanelComprador com;
     private PanelExpendedor exp;
-    private PanelDepositoMonedas dep;
+    private static PanelDepositoMonedas dep;
     public PanelPrincipal() {
         super("Expendedor de Productos");
 
         // Panel Expendedor
         exp = new PanelExpendedor();
+        this.add(exp);
 
         // Panel Comprador
         com = new PanelComprador();
+        this.add(com);
 
         // JDialog Monedero
         dep = new PanelDepositoMonedas(this);
+
+
 
         ImageIcon icono = new ImageIcon("src/main/resources/cocacola.png");
 
@@ -35,13 +39,20 @@ public class PanelPrincipal extends JFrame {
         this.setLayout(null);
         this.setResizable(false);
         this.setSize(1280, 720);
-        this.setVisible(true);
-        this.add(com);
-        this.add(exp);
+
+
         this.add(panelprincipal);
         dep.setLocation(this.getX() + this.getWidth()-200,this.getY());
+
+
         Musica musica = new Musica();
         musica.playMusic();
-        //this.add(dep);
+
+        this.setVisible(true);
     }
+
+    public static void setMonederoVisible(){
+        dep.setVisible(true);
+    }
+
 }

@@ -7,6 +7,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.jar.Manifest;
 
 import static main.visual.Musica.music;
 
@@ -20,10 +21,12 @@ public class PanelComprador extends JPanel implements ActionListener{
     private JButton moneda1000;
     private JButton moneda1500;
     private JLabel labelpago;
+    private JButton monedero;
     private int precio;
     private ImageIcon img_iconoproducto;
     private Comprador comprador;
     private Moneda monedacomprador;
+    private Timer animation_monedero;
 
 
     PanelComprador(){
@@ -31,6 +34,35 @@ public class PanelComprador extends JPanel implements ActionListener{
         precio = 0;
         monedacomprador = null;
 
+        // Animacion
+
+        animation_monedero = new Timer(60, new ActionListener() {
+            private int step = 0;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (step == 0){
+                    monedero.setIcon(new ImageIcon(new ImageIcon("src/main/resources/moneda100/moneda100_1.png").getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT)));
+                    step++;
+                }else if (step == 1){
+                    monedero.setIcon(new ImageIcon(new ImageIcon("src/main/resources/moneda100/moneda100_2.png").getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT)));
+                    step++;
+                }else if (step == 2){
+                    monedero.setIcon(new ImageIcon(new ImageIcon("src/main/resources/moneda100/moneda100_3.png").getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT)));
+                    step++;
+                }else if (step == 3){
+                    monedero.setIcon(new ImageIcon(new ImageIcon("src/main/resources/moneda100/moneda100_4.png").getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT)));
+                    step++;
+                }else if (step == 4){
+                    monedero.setIcon(new ImageIcon(new ImageIcon("src/main/resources/moneda100.png").getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT)));
+                    step++;
+                }else{
+                    step = 0;
+                    animation_monedero.stop();
+                }
+
+
+            }
+        });
 
         // Imagenes
         ImageIcon img_moneda100 = new ImageIcon("src/main/resources/moneda100.png");
@@ -106,6 +138,14 @@ public class PanelComprador extends JPanel implements ActionListener{
         moneda1500.setBackground(Color.YELLOW);
         moneda1500.addActionListener(this);
 
+        // Boton Monedero
+        monedero = new JButton();
+        monedero.setBounds(250,0,50,50);
+        monedero.setIcon(new ImageIcon(new ImageIcon("src/main/resources/moneda100.png").getImage().getScaledInstance(50,50,Image.SCALE_DEFAULT)));
+        monedero.setContentAreaFilled(false);
+        monedero.setBorderPainted(false);
+        monedero.setOpaque(false);
+        monedero.addActionListener(this);
 
          //                                   //
         /////////////// BOTONES ///////////////
@@ -116,8 +156,8 @@ public class PanelComprador extends JPanel implements ActionListener{
         this.add(panelmonedas);
 
         panelpago.add(paybutton);
-        //panelpago.add(resetbutton);
         panelpago.add(labelpago);
+        panelpago.add(monedero);
 
         panelmonedas.add(moneda100);
         panelmonedas.add(moneda500);
@@ -209,6 +249,7 @@ public class PanelComprador extends JPanel implements ActionListener{
                         JOptionPane.showMessageDialog(null, "Se ha comprado el producto con exito", "Compra Exitosa!", JOptionPane.PLAIN_MESSAGE);
                         PanelExpendedor.reducirCantidadProductoSeleccionado();
                         PanelDepositoMonedas.AumentarCantidad(precio);
+                        animation_monedero.start();
                         pushbutton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
                     } catch (NoHayProductoException | PagoInsuficienteException | PagoIncorrectoException e) {
                         JOptionPane.showMessageDialog(null, e.getMessage(), "Error en la compra", JOptionPane.INFORMATION_MESSAGE);
@@ -229,6 +270,8 @@ public class PanelComprador extends JPanel implements ActionListener{
             }else {
                 JOptionPane.showMessageDialog(null, "El depósito está vacío", "Sin producto", JOptionPane.INFORMATION_MESSAGE);
             }
+        }else if (button_down.getSource() == monedero){
+            PanelPrincipal.setMonederoVisible();
         }
 
         labelpago.setText(String.valueOf(precio) + "$");

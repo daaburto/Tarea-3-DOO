@@ -22,9 +22,9 @@ public class PanelDepositoMonedas extends JDialog implements ActionListener {
         monedas = new MonedaButton[4];
 
         this.setIconImage(logo.getImage());
-        this.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(JDialog.HIDE_ON_CLOSE);
         this.setLayout(new GridLayout(2,2));
-        this.setResizable(true);
+        this.setResizable(false);
 
         // Botones
         for (int i = 0; i < 4; i++){
@@ -36,7 +36,7 @@ public class PanelDepositoMonedas extends JDialog implements ActionListener {
         }
 
         this.setSize(350,350);
-        this.setVisible(true);
+        this.setVisible(false);
     }
 
     public static void AumentarCantidad(int num_moneda){
@@ -50,6 +50,7 @@ public class PanelDepositoMonedas extends JDialog implements ActionListener {
             monedas[3].AumentarCantidad();
         }
     }
+
 
     @Override
     public void actionPerformed(ActionEvent button_down) {
