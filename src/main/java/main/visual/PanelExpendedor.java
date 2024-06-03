@@ -94,7 +94,7 @@ public class PanelExpendedor extends JPanel {
             int aux = i;
             productos[i].addActionListener(e -> seleccionarProducto(aux));
 
-            etiquetasPrecios[i] = new JLabel(precios[i] + " $", SwingConstants.CENTER);
+            etiquetasPrecios[i] = new JLabel("$" + precios[i], SwingConstants.CENTER);
             etiquetasPrecios[i].setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
             productoPanel.add(productos[i], BorderLayout.CENTER);

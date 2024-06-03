@@ -38,9 +38,7 @@ public class PanelPrincipal extends JFrame {
         // JDialog Monedero
         dep = new PanelDepositoMonedas(this);
 
-
         ImageIcon icono = new ImageIcon("src/main/resources/cocacola.png");
-
 
         JPanel panelprincipal = new JPanel();
         panelprincipal.setBounds(0, 0, 1280, 720);
@@ -52,17 +50,14 @@ public class PanelPrincipal extends JFrame {
         this.setResizable(false);
         this.setSize(1280, 720);
 
-
         this.add(panelprincipal);
         dep.setLocation(this.getX() + this.getWidth()-200,this.getY());
-
 
         Musica musica = new Musica();
         musica.playMusic();
 
         this.setVisible(true);
     }
-
     public static void setMonederoVisible(){
         dep.setVisible(true);
     }

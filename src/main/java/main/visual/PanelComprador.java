@@ -1,13 +1,10 @@
 package main.visual;
 
 import main.java.*;
-
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.jar.Manifest;
 
 import static main.visual.Musica.music;
 
@@ -117,8 +114,6 @@ public class PanelComprador extends JPanel implements ActionListener{
                     step = 0;
                     animation_monedero.stop();
                 }
-
-
             }
         });
 
@@ -137,7 +132,6 @@ public class PanelComprador extends JPanel implements ActionListener{
         labelpago.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         labelpago.setVerticalAlignment(JLabel.CENTER);
         labelpago.setHorizontalAlignment(JLabel.CENTER);
-
 
 
 
@@ -221,9 +215,6 @@ public class PanelComprador extends JPanel implements ActionListener{
         panelmonedas.add(moneda500);
         panelmonedas.add(moneda1000);
         panelmonedas.add(moneda1500);
-
-
-
     }
 
     /**
@@ -308,7 +299,7 @@ public class PanelComprador extends JPanel implements ActionListener{
                     try {
                         comprador = new Comprador(monedacomprador, PanelExpendedor.productoSeleccionado + 1, PanelExpendedor.exp);
                         music.ButtonPay();
-                        JOptionPane.showMessageDialog(null, "Se ha comprado el producto con exito", "Compra Exitosa!", JOptionPane.PLAIN_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Se ha comprado el producto con éxito", "Compra Exitosa!", JOptionPane.PLAIN_MESSAGE);
                         PanelExpendedor.reducirCantidadProductoSeleccionado();
                         PanelDepositoMonedas.AumentarCantidad(precio);
                         animation_monedero.start();
@@ -335,7 +326,6 @@ public class PanelComprador extends JPanel implements ActionListener{
         }else if (button_down.getSource() == monedero){
             PanelPrincipal.setMonederoVisible();
         }
-
         labelpago.setText("$" + precio);
     }
 }

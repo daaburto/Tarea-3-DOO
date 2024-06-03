@@ -2,15 +2,28 @@ package main.visual;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
+/**
+ * MonedaButton es una clase personalizada que representa un botón que muestra una imagen de moneda
+ * y mantiene un contador de la cantidad de monedas.
+ * @see PanelDepositoMonedas
+ * @author Joaquín Sandoval
+ */
 public class MonedaButton extends JButton{
+    /**
+     * Cantidad de monedas.
+     */
     private int cantidad;
 
+    /**
+     * Imagen de la moneda.
+     */
     private Image image;
 
-
+    /**
+     * Constructor de MonedaButton.
+     * @param img El icono que representa la imagen de la moneda.
+     */
     public MonedaButton(Icon img){
         this.image = ((ImageIcon) img).getImage();
         this.cantidad = 0;
@@ -20,15 +33,25 @@ public class MonedaButton extends JButton{
         this.setBackground(Color.LIGHT_GRAY);
     }
 
+    /**
+     * @return cantidad de monedas.
+     */
     public int getCantidad(){
         return cantidad;
     }
 
+    /**
+     * Aumenta la cantidad de monedas en uno.
+     */
     public void AumentarCantidad(){
         cantidad++;
         repaint();
     }
 
+    /**
+     * Sobrescribe el método paintComponent para dibujar la imagen de la moneda según la cantidad.
+     * @param g donde se dibuja el componente.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
