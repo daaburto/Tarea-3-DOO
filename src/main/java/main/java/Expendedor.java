@@ -371,4 +371,14 @@ public class Expendedor{
     public Deposito<Producto> getDepositoEspecial(){
         return depositoEspecial;
     }
+
+    /**
+     * @return El depósito donde se guardan las monedas que tienen una compra exitosa
+     */
+    public Deposito<Moneda> getDepositoExpendedor(){
+        return monEx;
+    }
+
+
+
 }

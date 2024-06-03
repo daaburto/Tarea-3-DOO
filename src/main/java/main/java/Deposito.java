@@ -67,4 +67,5 @@ public class Deposito<T>{
     public void setProducto(T p){
         productoespecial = p;
     }
+
 }
