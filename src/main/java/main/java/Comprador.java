@@ -26,8 +26,6 @@ public class Comprador{
         int total;
         exp.comprarProducto(m,cualProducto);
         Producto ProductoComprado = exp.getDepositoEspecial().getProducto();
-        // Borrar
-        //Producto ProductoComprado = exp.comprarProducto(m, cualProducto);
         Moneda monedaVuelto;
 
         if (ProductoComprado != null) {

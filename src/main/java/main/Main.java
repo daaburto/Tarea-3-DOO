@@ -11,7 +11,5 @@ import main.visual.PanelPrincipal;
 public class Main {
     public static void main(String[] args) throws NoHayProductoException, PagoInsuficienteException, PagoIncorrectoException {
         PanelPrincipal pan = new PanelPrincipal();
-        //pan.paintComponent(pan.getGraphics());
-
     }
 }

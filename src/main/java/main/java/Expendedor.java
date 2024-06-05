@@ -229,8 +229,6 @@ public class Expendedor{
                     if (p == null)
                         throw new NoHayProductoException("No existe el producto solicitado. Se le devolverá su moneda de $"+m.getValor());
                     depositoEspecial.setProducto(p);
-                    // Borrar
-                    //return p;
                     break;
                 } else {
                     throw new PagoInsuficienteException("Pago insuficiente: El valor pagado es menor que el precio del producto. Se le devolverá su moneda de $" + m.getValor());
@@ -252,8 +250,6 @@ public class Expendedor{
                         throw new NoHayProductoException("No existe el producto solicitado. Se le devolverá su moneda de $"+m.getValor());
                     depositoEspecial.setProducto(p);
                     break;
-                    // Borrar
-                    //return p;
                 } else {
                     throw new PagoInsuficienteException("Pago insuficiente: El valor pagado es menor que el precio del producto. Se le devolverá su moneda de $" + m.getValor());
                 }
@@ -274,8 +270,6 @@ public class Expendedor{
                         throw new NoHayProductoException("No existe el producto solicitado. Se le devolverá su moneda de $" + m.getValor());
                     depositoEspecial.setProducto(p);
                     break;
-                    // Borrar
-                    //return p;
                 } else {
                     throw new PagoInsuficienteException("Pago insuficiente: El valor pagado es menor que el precio del producto. Se le devolverá su moneda de $" + m.getValor());
                 }
@@ -297,8 +291,6 @@ public class Expendedor{
 
                     depositoEspecial.setProducto(p);
                         break;
-                    // Borrar
-                    //return p;
                 } else {
                     throw new PagoInsuficienteException("Pago insuficiente: El valor pagado es menor que el precio del producto. Se le devolverá su moneda de $" + m.getValor());
                 }
@@ -319,8 +311,6 @@ public class Expendedor{
                         throw new NoHayProductoException("No existe el producto solicitado. Se le devolverá su moneda de $"+m.getValor());
                     depositoEspecial.setProducto(p);
                     break;
-                    // Borrar
-                    //return p;
                 } else {
                     throw new PagoInsuficienteException("Pago insuficiente: El valor pagado es menor que el precio del producto. Se le devolverá su moneda de $" + m.getValor());
                 }
@@ -341,8 +331,6 @@ public class Expendedor{
                         throw new NoHayProductoException("No existe el producto solicitado. Se le devolverá su moneda de $"+m.getValor());
                     depositoEspecial.setProducto(p);
                     break;
-                    // Borrar
-                    //return p;
                 } else {
                     throw new PagoInsuficienteException("Pago insuficiente: El valor pagado es menor que el precio del producto. Se le devolverá su moneda de $" + m.getValor());
                 }
